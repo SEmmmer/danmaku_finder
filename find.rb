@@ -19,7 +19,6 @@ ass_file = File.new("test.ass", "ab")
 start_time = 1586264660000
 # 经计算，这个时间是2020-4-7 20：04
 
-
 file = File.new("2020-4-7.txt", "rb")
 if file
   file.each_line do
@@ -49,7 +48,6 @@ if file
 
       add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{danmaku_array[0]},,0,0,0,,#{danmaku_array[1]}"
       ass_file.syswrite(add_line)
-      # puts add_line
     end
   end
 else
