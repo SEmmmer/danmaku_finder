@@ -13,6 +13,13 @@ class Danmaku
   end
 end
 
+man = []
+man[0] = 101957323
+man[1] = 9572567
+man[2] = 12892870
+
+ass_file = File.new("test.ass", "rb")
+
 
 file = File.new("2020-4-7.txt", "rb")
 if file
@@ -23,10 +30,12 @@ if file
     elsif i[0] == "S"
       break
     end
+
     i_array = i.split(":", 3)
     i_danmaku = Danmaku.new(Integer(i_array[0]), Integer(i_array[1]), i_array[2])
 
-
+    if i_danmaku.uid == man[0] || i_danmaku.uid == man[1] || i_danmaku == man[2]
+    end
   end
 else
   puts "Failed to read file."
