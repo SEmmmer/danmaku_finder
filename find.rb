@@ -41,7 +41,7 @@ if file
       delta_time /= 60
       h = delta_time
 
-      add_line = "Dialogue: 0,#{h}:#{min}:#{s}:#{ms},#{h}:#{min}:#{s + 1}:#{ms},吹雪 蓝白,,0,0,0,,#{i_danmaku.danmaku_context}"
+      add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},吹雪 蓝白,,0,0,0,,#{i_danmaku.danmaku_context}"
       ass_file.syswrite(add_line)
     end
   end
