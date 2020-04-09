@@ -66,7 +66,6 @@ if file
       add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
       # ass_file.syswrite(add_line)
       puts add_line
-      # puts i_danmaku.uid
       # 一技能实战
       # 二技能调试
     end
