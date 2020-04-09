@@ -1,4 +1,5 @@
 # -*- coding:UTF-8 -*-
+
 class Danmaku
   attr_accessor :time, :uid, :danmaku_context
 
@@ -8,7 +9,6 @@ class Danmaku
     @danmaku_context = danmaku
   end
 end
-
 man = []
 man[0] = 101957323
 man[1] = 9572567
@@ -18,12 +18,10 @@ man[4] = 2025122
 # 向同传man致以崇高的敬意
 
 ass_file = File.new("test.ass", "ab")
+file = File.new("2020-4-9.txt", "rb")
 
-start_time = 1586264660000
 start_time = 1586354362515
 # 去文件里找start time
-#
-file = File.new("2020-4-9.txt", "rb")
 
 if file
   file.each_line do
@@ -35,7 +33,11 @@ if file
     end
 
     i_array = i.split(":", 3)
+    # one = Integer(i_array[0])
+    # two = Integer(i_array[1])
+    # three = i_array[2].force_encoding("UTF-8")
     i_danmaku = Danmaku.new(Integer(i_array[0]), Integer(i_array[1]), i_array[2].force_encoding("UTF-8"))
+
 
     if i_danmaku.uid == man[4] || i_danmaku.uid == man[3]
       danmaku_array = i_danmaku.danmaku_context.split("【", 2)
@@ -62,8 +64,8 @@ if file
       end
 
       add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
-      ass_file.syswrite(add_line)
-      # puts add_line
+      # ass_file.syswrite(add_line)
+      puts add_line
       # puts i_danmaku.uid
       # 一技能实战
       # 二技能调试
