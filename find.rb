@@ -18,6 +18,7 @@ man[4] = 2025122
 # 向同传man致以崇高的敬意
 
 ass_file = File.new("test.ass", "ab")
+csv_file = File.new("test.csv", "wb")
 file = File.new("2020-4-9.txt", "rb")
 
 start_time = 1586354362515
@@ -63,9 +64,12 @@ if file
         # 自定义Format
       end
 
-      add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
-      # ass_file.syswrite(add_line)
-      puts add_line
+      ass_add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
+      csv_add_line = "0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
+      # ass_file.syswrite(ass_add_line)
+      csv_file.syswrite(csv_add_line)
+      # puts ass_add_line
+      puts csv_add_line
       # 一技能实战
       # 二技能调试
     end
