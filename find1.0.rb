@@ -1,45 +1,38 @@
-class NilClass
-  def blank?
-    true
+module ActAsCsv
+  def self.include(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+    def acts_as_csv
+      include InstanceMethods
+    end
+  end
+
+  module InstanceMethods
+    def read
+      @csv_contents = []
+      filename = self.class.to_s.downcase + ".txt"
+      file = File.new(filename)
+      @headers = file.gets.chomp.split(",")
+
+      file.each do |row|
+        @csv_contents << row.chomp.split(",")
+      end
+    end
+
+    attr_accessor :headers, :csv_contents
+
+    def initialize
+      read
+    end
   end
 end
 
-class String
-  def blank?
-    self.size == 0
-  end
+class RubyCsv
+  include ActAsCsv
 end
 
-["","person",nil].each do |element|
-  puts element unless element.blank?
-end
-# class ActsAsCsv
-#   def read
-#     file = File.new(self.class.to_s.downcase + ".txt")
-#     @headers = file.get.chomp.split(",")
-#     file.each do |row|
-#       @result << row.chomp.split(",")
-#     end
-#   end
-#
-#   def headers
-#     @headers
-#   end
-#
-#   def csv_contents
-#     @result
-#   end
-#
-#   def initialize
-#     @result = []
-#     read
-#   end
-# end
-#
-# class RubyCsv < ActsAsCsv
-#
-# end
-#
-# m = RubyCsv.new
-# puts m.headers.inspect
-# puts m.csv_contents.inspect
+m = RubyCsv.new
+puts m.headers
+puts m.csv_contents
