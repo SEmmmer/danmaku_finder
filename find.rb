@@ -30,7 +30,7 @@ if file
     i_array = i.split(":", 3)
     i_danmaku = Danmaku.new(Integer(i_array[0]), Integer(i_array[1]), i_array[2].force_encoding("UTF-8"))
 
-    if i_danmaku.uid == man[6] || i_danmaku.uid == man[3] || i_danmaku.uid == man[5]
+    if i_danmaku.exam_uid man
       danmaku_array = i_danmaku.danmaku_context.split("【", 2)
       if danmaku_array[1]
         danmaku_array[1].delete! '】'

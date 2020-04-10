@@ -10,16 +10,22 @@ class Danmaku
   end
 
   def exam_uid(man)
-    equal = false
-    i = 0
-    while i < man.length
-      if uid == man[i]
-        equal = true
-      end
-    end
-    equal
+    man.include? uid
   end
 
+  def time_array(start_time)
+    delta_time = time - start_time
+    delta_time /= 10
+    ms = delta_time % 100
+    delta_time /= 100
+    s = delta_time % 60
+    delta_time /= 60
+    min = delta_time % 60
+    delta_time /= 60
+    h = delta_time
+
+    [h, min, s, ms]
+  end
 end
 
 man = []
@@ -30,7 +36,3 @@ man[3] = 37718180
 man[4] = 2025122
 man[5] = 171909416
 man[6] = 23420020
-
-i_danmaku = Danmaku.new(1919, 2020, "inside")
-
-puts man.length
