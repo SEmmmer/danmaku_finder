@@ -1,14 +1,6 @@
 # -*- coding:UTF-8 -*-
+require_relative 'danmaku.rb'
 
-class Danmaku
-  attr_accessor :time, :uid, :danmaku_context
-
-  def initialize(time, uid, danmaku = "")
-    @time = time
-    @uid = uid
-    @danmaku_context = danmaku
-  end
-end
 man = []
 man[0] = 101957323
 man[1] = 9572567
@@ -23,7 +15,7 @@ ass_file = File.new("test.ass", "ab")
 csv_file = File.new("test.csv", "wb")
 file = File.new("2020-4-9.txt", "rb")
 
-start_time = 1586444433208
+start_time = 1586361620315
 # 去文件里找start time
 
 if file
@@ -48,9 +40,9 @@ if file
 
       delta_time = i_danmaku.time - start_time
 
-      # if delta_time < 0
-      #   next
-      # end
+      if delta_time < 0
+        next
+      end
 
       delta_time /= 10
       ms = delta_time % 100
