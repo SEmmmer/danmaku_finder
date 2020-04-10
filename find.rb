@@ -1,5 +1,10 @@
 # -*- coding:UTF-8 -*-
 require_relative 'danmaku.rb'
+require "fileutils"
+
+unless File.exist? "test.ass"
+  FileUtils.cp_r("base/test.ass", "./")
+end
 
 man = []
 man[0] = 101957323
@@ -11,11 +16,14 @@ man[5] = 171909416
 man[6] = 23420020
 # 向同传man致以崇高的敬意
 
-ass_file = File.new("test.ass", "ab")
-csv_file = File.new("test.csv", "wb")
-file = File.new("2020-4-9.txt", "rb")
+txt_name = "2020-4-9"
 
-start_time = 1586361620315
+ass_file = File.open("test.ass", "r+b")
+ass_file.seek(1216,IO::SEEK_SET)
+csv_file = File.new("test.csv", "wb")
+file = File.new(txt_name + ".txt", "rb")
+
+start_time = 1586436449493
 # 去文件里找start time
 
 if file
@@ -38,35 +46,26 @@ if file
         next
       end
 
-      delta_time = i_danmaku.time - start_time
-
-      if delta_time < 0
+      array = i_danmaku.time_array start_time
+      if array
+        h = array[0]
+        min = array[1]
+        s = array[2]
+        ms = array[3]
+      else
         next
       end
 
-      delta_time /= 10
-      ms = delta_time % 100
-      delta_time /= 100
-      s = delta_time % 60
-      delta_time /= 60
-      min = delta_time % 60
-      delta_time /= 60
-      h = delta_time
-
-      # if h > 5
-      #   next
-      # end
-
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
-        format = "吹雪"
+        format = "吹雪 蓝白"
         # 自定义Format
       end
 
       ass_add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
       csv_add_line = "0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
-      # ass_file.syswrite(ass_add_line)
-      # csv_file.syswrite(csv_add_line)
+      ass_file.syswrite(ass_add_line)
+      csv_file.syswrite(csv_add_line)
       puts ass_add_line
       # puts csv_add_line
       # 一技能实战
@@ -78,3 +77,5 @@ else
 end
 
 file.close
+
+
