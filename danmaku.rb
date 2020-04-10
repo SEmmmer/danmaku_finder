@@ -9,11 +9,15 @@ class Danmaku
     @danmaku_context = danmaku
   end
 
-  def set_uid
-
-
-    while
+  def exam_uid(man)
+    equal = false
+    i = 0
+    while i < man.length
+      if uid == man[i]
+        equal = true
+      end
     end
+    equal
   end
 
 end
@@ -29,3 +33,4 @@ man[6] = 23420020
 
 i_danmaku = Danmaku.new(1919, 2020, "inside")
 
+puts man.length
