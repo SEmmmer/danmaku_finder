@@ -16,14 +16,14 @@ man[5] = 171909416
 man[6] = 23420020
 # 向同传man致以崇高的敬意
 
-txt_name = "2020-4-9"
+txt_name = "2020-4-10"
 
 ass_file = File.open("test.ass", "r+b")
-ass_file.seek(1216,IO::SEEK_SET)
+ass_file.seek(1216, IO::SEEK_SET)
 csv_file = File.new("test.csv", "wb")
 file = File.new(txt_name + ".txt", "rb")
 
-start_time = 1586436449493
+start_time = 1586509090533
 # 去文件里找start time
 
 if file
@@ -53,6 +53,10 @@ if file
         s = array[2]
         ms = array[3]
       else
+        next
+      end
+
+      if h >= 3
         next
       end
 
