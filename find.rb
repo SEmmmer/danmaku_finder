@@ -14,16 +14,17 @@ man[3] = 37718180
 man[4] = 2025122
 man[5] = 171909416
 man[6] = 23420020
+man[7] = 470715
 # 向同传man致以崇高的敬意
 
-txt_name = "2020-4-10"
+txt_name = "2020-4-11"
 
 ass_file = File.open("test.ass", "r+b")
 ass_file.seek(1216, IO::SEEK_SET)
 csv_file = File.new("test.csv", "wb")
 file = File.new(txt_name + ".txt", "rb")
 
-start_time = 1586509090533
+start_time = 1586609914108
 # 去文件里找start time
 
 if file
@@ -62,7 +63,7 @@ if file
 
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
-        format = "吹雪 蓝白"
+        format = ""
         # 自定义Format
       end
 
