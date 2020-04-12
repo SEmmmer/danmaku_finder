@@ -2,8 +2,10 @@
 require_relative 'danmaku.rb'
 require "fileutils"
 
-unless File.exist? "test.ass"
-  FileUtils.cp_r("base/test.ass", "./")
+txt_name = "2020-04-12"
+
+unless File.exist? txt_name + ".ass"
+  FileUtils.cp_r("base/test.ass", "./" + txt_name + ".ass")
 end
 
 man = []
@@ -15,16 +17,15 @@ man[4] = 2025122
 man[5] = 171909416
 man[6] = 23420020
 man[7] = 470715
+man[8] = 434270
 # 向同传man致以崇高的敬意
 
-txt_name = "2020-4-11"
-
-ass_file = File.open("test.ass", "r+b")
+ass_file = File.open(txt_name + ".ass", "r+b")
 ass_file.seek(1216, IO::SEEK_SET)
 csv_file = File.new("test.csv", "wb")
 file = File.new(txt_name + ".txt", "rb")
 
-start_time = 1586609914108
+start_time = 1586679678981
 # 去文件里找start time
 
 if file
@@ -57,7 +58,7 @@ if file
         next
       end
 
-      if h >= 3
+      if h >= 5
         next
       end
 
