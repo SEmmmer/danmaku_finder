@@ -2,7 +2,7 @@
 require_relative 'danmaku.rb'
 require "fileutils"
 
-txt_name = "2020-04-13"
+txt_name = "2020-4-13"
 
 unless File.exist? txt_name + ".ass"
   FileUtils.cp_r("base/test.ass", "./" + txt_name + ".ass")
@@ -26,7 +26,7 @@ ass_file.seek(1216, IO::SEEK_SET)
 csv_file = File.new("test.csv", "wb")
 file = File.new(txt_name + ".txt", "rb")
 
-start_time = 1586735977953
+start_time = 1586707227704
 # 去文件里找start time
 
 if file
@@ -68,6 +68,15 @@ if file
         format = ""
         # 自定义Format
       end
+      #
+      # test = danmaku_array[1].split(":", 2)
+      # if test[1] == nil
+      #   format = ""
+      #   danmaku_array[1] = test[0]
+      # else
+      #   format = test[0]
+      #   danmaku_array[1] = test[1]
+      # end
 
       ass_add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
       csv_add_line = "0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
