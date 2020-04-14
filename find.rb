@@ -2,7 +2,7 @@
 require_relative 'danmaku.rb'
 require "fileutils"
 
-txt_name = ARGV[0]
+txt_name = ARGV[0].delete!".txt"
 start_time = Integer(ARGV[1])
 
 if ARGV[0] == nil
@@ -18,7 +18,6 @@ end
 unless File.exist? txt_name + ".ass"
   FileUtils.cp_r("base/test.ass", "./" + txt_name + ".ass")
 end
-
 
 man = []
 man[0] = 101957323
