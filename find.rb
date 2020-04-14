@@ -2,11 +2,23 @@
 require_relative 'danmaku.rb'
 require "fileutils"
 
-txt_name = "2020-4-13"
+txt_name = ARGV[0]
+start_time = Integer(ARGV[1])
+
+if ARGV[0] == nil
+  puts "Please input date (format: YYYY-MM-DD) : "
+  txt_name = gets.delete!"\n"
+end
+
+if ARGV[1] == nil
+  puts "Please input time (format: **********) : "
+  start_time = Integer(gets.delete!"\n")
+end
 
 unless File.exist? txt_name + ".ass"
   FileUtils.cp_r("base/test.ass", "./" + txt_name + ".ass")
 end
+
 
 man = []
 man[0] = 101957323
@@ -25,11 +37,7 @@ man[11] = 20740273
 
 ass_file = File.open(txt_name + ".ass", "r+b")
 ass_file.seek(1216, IO::SEEK_SET)
-csv_file = File.new("test.csv", "wb")
 file = File.new(txt_name + ".txt", "rb")
-
-start_time = 1586779150067
-# 去文件里找start time
 
 if file
   file.each_line do
@@ -70,24 +78,10 @@ if file
         format = ""
         # 自定义Format
       end
-      #
-      # test = danmaku_array[1].split(":", 2)
-      # if test[1] == nil
-      #   format = ""
-      #   danmaku_array[1] = test[0]
-      # else
-      #   format = test[0]
-      #   danmaku_array[1] = test[1]
-      # end
 
       ass_add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
-      csv_add_line = "0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
       ass_file.syswrite(ass_add_line)
-      csv_file.syswrite(csv_add_line)
       puts ass_add_line
-      # puts csv_add_line
-      # 一技能实战
-      # 二技能调试
     end
   end
 else
