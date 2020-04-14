@@ -1,5 +1,5 @@
-file = File.open("hapi.txt", "rb")
-hapi_file = File.open("true_hapi.txt", "a+b")
+file = File.open(ARGV[0], "rb")
+hapi_file = File.new(ARGV[1], "a+b")
 
 if file
   file.each_line do
