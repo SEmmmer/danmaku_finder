@@ -2,18 +2,23 @@
 require_relative 'danmaku.rb'
 require "fileutils"
 
-txt_name = ARGV[0].delete!".txt"
-start_time = Integer(ARGV[1])
 
 if ARGV[0] == nil
   puts "Please input date (format: YYYY-MM-DD) : "
-  txt_name = gets.delete!"\n"
+  txt_name = gets.delete! "\n"
+else
+  txt_name = ARGV[0].delete! ".txt"
+
 end
 
 if ARGV[1] == nil
   puts "Please input time (format: **********) : "
-  start_time = Integer(gets.delete!"\n")
+  start_time = Integer(gets.delete! "\n")
+else
+  start_time = Integer(ARGV[1])
+
 end
+
 
 unless File.exist? txt_name + ".ass"
   FileUtils.cp_r("base/test.ass", "./" + txt_name + ".ass")
@@ -32,6 +37,8 @@ man[8] = 434270
 man[9] = 1435101
 man[10] = 59099298
 man[11] = 20740273
+man[12] = 3781775
+man[13] = 2327813
 # 向同传man致以崇高的敬意
 
 ass_file = File.open(txt_name + ".ass", "r+b")
