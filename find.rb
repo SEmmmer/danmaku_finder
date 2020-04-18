@@ -39,6 +39,13 @@ man[10] = 59099298
 man[11] = 20740273
 man[12] = 3781775
 man[13] = 2327813
+man[14] = 86131688
+man[15] = 90021
+man[16] = 16249253
+man[17] = 2907459
+man[18] = 13967
+man[19] = 36304607
+man[20] = 15786749
 # 向同传man致以崇高的敬意
 
 ass_file = File.open(txt_name + ".ass", "r+b")
@@ -75,9 +82,9 @@ if file
         next
       end
 
-      if h >= 5
-        next
-      end
+      # if min >= 10
+      #   next
+      # end
 
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
