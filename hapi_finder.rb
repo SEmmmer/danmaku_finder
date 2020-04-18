@@ -1,5 +1,5 @@
 file = File.open("hapi.txt", "rb")
-# hapi_file = File.new("")
+hapi_file = File.new("hapi_001.txt", "wb")
 times = 0
 hapi = []
 hapi_point = []
@@ -20,18 +20,15 @@ if file
       times += 1
     end
 
-    puts array[2]
-    puts "该弹幕是hapi吗？"
-    answer = gets.delete! "\n"
-    if answer == "1"
-      hapi_point[uid] += 1
-    end
+    hapi_point[uid] += 1
   end
 end
 
 puts times
 
 while times > 0
-  puts String(hapi[times - 1]) + " 的hapi指数为 " + String(hapi_point[hapi[times - 1]])
+  string = String(hapi[times - 1]) + " 的hapi指数为 " + String(hapi_point[hapi[times - 1]]) + "\n"
+  puts string
+  hapi_file.syswrite string
   times -= 1
 end
