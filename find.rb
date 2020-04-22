@@ -82,10 +82,6 @@ if file
         next
       end
 
-      # if min >= 10
-      #   next
-      # end
-
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
         format = ""
@@ -95,9 +91,10 @@ if file
       ass_add_line = "Dialogue: 0,#{h}:#{min}:#{s}.#{ms},#{h}:#{min}:#{s + 1}.#{ms},#{format},,0,0,0,,#{danmaku_array[1]}"
       ass_file.syswrite(ass_add_line)
       puts ass_add_line
+    else
+      next
     end
   end
-else
   puts "Failed to read file."
 end
 
