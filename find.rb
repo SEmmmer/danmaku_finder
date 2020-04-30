@@ -90,7 +90,7 @@ if file
 
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
-        format = ""
+        format = "吹雪 蓝白"
         # 自定义Format
       end
 
