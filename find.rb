@@ -52,6 +52,7 @@ man[23] = 59099298
 man[24] = 86131688
 man[25] = 101957323
 man[26] = 171909416
+man[27] = 49567
 # 向同传man致以崇高的敬意
 
 ass_file = File.open(txt_name + ".ass", "r+b")
@@ -90,7 +91,7 @@ if file
 
       format = danmaku_array[0]
       if danmaku_array[0].length == 0
-        format = "吹雪 蓝白"
+        format = ""
         # 自定义Format
       end
 
