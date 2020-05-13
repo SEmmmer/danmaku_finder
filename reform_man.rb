@@ -1,6 +1,9 @@
+
+
 man = []
 i = 0
 j = 0
+
 
 max_num = man.length
 
