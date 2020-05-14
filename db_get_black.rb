@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*
+# 从数据库获取黑名单保存为txt文件
 
 require 'mongo'
 

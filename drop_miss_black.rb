@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*
+# 对于所有的黑名单
+# 在一个个confirm后
+# 会删除误处理的uid
 
 require 'mongo'
 
@@ -11,10 +14,13 @@ if miss_black_file
   miss_black_file.each_line do
   |miss|
     miss.delete! "\n"
+    # 为了保险删除换行符
 
     unless miss
+      # 如果因为意外某行为空则跳过
       next
     end
+    # 误处理黑名单的恢复
     table.delete_one({:uid => miss})
   end
 end
