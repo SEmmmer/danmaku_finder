@@ -8,7 +8,7 @@ require 'mongo'
 client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
 table = client[:uid]
 
-miss_black_file = File.open("drop_list.txt", "rb")
+miss_black_file = File.open("database/drop_list.txt", "rb")
 
 if miss_black_file
   miss_black_file.each_line do
