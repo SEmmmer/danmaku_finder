@@ -21,6 +21,6 @@ if miss_black_file
       next
     end
     # 误处理黑名单的恢复
-    table.delete_one({:uid => miss})
+    table.delete_many({:uid => miss})
   end
 end

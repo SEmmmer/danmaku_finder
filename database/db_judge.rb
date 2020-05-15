@@ -16,7 +16,6 @@ begin
     end
 
     single = question.aggregate([{'$sample': {size: 1}}])
-
     single.each do
     |i|
       single = i
@@ -32,11 +31,11 @@ begin
       if string == "1\n"
         uid_col.update_one({:uid => single['uid']}, {:type => "black"})
       end
-      question.delete_one(:question => single["danmaku"])
+      question.delete_many(:question => single["danmaku"])
     end
   end
 rescue Interrupt
   puts "用户终止进程"
-  client[:uid].delete_one({:uid => $regret_uid})
+  client[:uid].delete_many({:uid => $regret_uid})
 
 end

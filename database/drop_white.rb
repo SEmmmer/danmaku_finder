@@ -8,6 +8,6 @@ table = client[:uid]
 
 table.find({:type => "white"}).each do
 |i|
-  table.delete_one i
+  table.delete_many i
 end
 
