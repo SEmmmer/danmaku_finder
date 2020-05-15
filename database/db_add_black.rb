@@ -16,12 +16,19 @@ if black_file
       # 如果因为意外某行为空则跳过
       next
     end
+    insert = true
 
     doc = {
         uid: black_id,
         type: "black"
     }
-    table.insert_one(doc)
+
+    table.find({:uid => black_id}).each do
+      insert = false
+    end
+    if insert
+      table.insert_one(doc)
+    end
 
   end
 end
