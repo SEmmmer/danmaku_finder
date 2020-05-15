@@ -60,6 +60,7 @@ man[31] = 433909
 man[32] = 1788449
 man[33] = 82618
 man[34] = 37997117
+man[35] = 2477387
 # 向同传man致以崇高的敬意
 
 ass_file = File.open(txt_name + ".ass", "r+b")
