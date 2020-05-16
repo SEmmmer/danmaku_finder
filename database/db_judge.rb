@@ -20,7 +20,8 @@ begin
     unless get
       raise SystemExit, "The database is NULL now"
     end
-
+    # 趁另一个用户不注意提前插入文本
+    # 防止两个用户同时改到一道题
     uid_col.insert_one({:uid => single['uid'], :type => "white"})
     $regret_uid = single['uid']
     puts $regret_uid
@@ -29,9 +30,14 @@ begin
     string = gets
     if string == "1\n"
       uid_col.update_one({:uid => single['uid']}, {:type => "black"})
+      # 先 斩 后 奏
     end
     question.delete_many(:question => single["danmaku"])
     question.delete_many(:uid => single["uid"])
+    # 处理完该问题
+    # 从弹幕库中删除
+    # 以后也不再接受相同的问题
+    # 以及相同用户的言论
   end
 rescue Interrupt
   puts "用户终止进程"
