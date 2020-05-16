@@ -6,8 +6,4 @@ require 'mongo'
 client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
 table = client[:uid]
 
-table.find({:type => "white"}).each do
-|i|
-  table.delete_many i
-end
-
+table.delete_many({:type => "white"})

@@ -22,7 +22,7 @@ if question_file
     array = question.split(":", 3)
     danmaku_content = array[2].force_encoding("utf-8")
     # 保险起见进行强制编码一次
-    f
+
     insert = true
     doc = {
         uid: array[1],

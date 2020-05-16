@@ -4,20 +4,17 @@
 require 'mongo'
 
 client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
-table = client[:uid]
+uid_col = client[:uid]
+question = client[:question]
 confirm_file = File.new("database/confirm_list.txt", "wb")
 
-table.find({type: "black"}).each do
+uid_col.find({type: "black"}).each do
 |i|
-  danmaku_file = File.open("database/file2.txt", "rb")
   confirm_file.syswrite "#{i["uid"]}\n"
-  danmaku_file.each_line do
+  question.find({:uid => i['uid']}).each do
   |line|
-    array = line.split(":", 3)
-    if i["uid"] == array[1]
-      confirm_file.syswrite array[2]
-    end
+    confirm_file.syswrite line['danmaku']
   end
-  danmaku_file.close
   confirm_file.syswrite "\n"
 end
+confirm_file.close
