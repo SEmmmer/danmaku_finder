@@ -9,9 +9,16 @@ uid_col = client[:uid]
 begin
   while true
     single = question.aggregate([{'$sample': {size: 1}}])
+
+    get = false
     single.each do
     |i|
       single = i
+      get = true
+    end
+
+    unless get
+      raise SystemExit, "The database is NULL now"
     end
 
     uid_col.insert_one({:uid => single['uid'], :type => "white"})
@@ -29,4 +36,7 @@ begin
 rescue Interrupt
   puts "用户终止进程"
   client[:uid].delete_many({:uid => $regret_uid})
+rescue SystemExit
+  puts "数据库为空，程序已结束"
+# ignored
 end
