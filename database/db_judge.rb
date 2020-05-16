@@ -24,6 +24,7 @@ begin
     if single['finish'] == 'yes'
       next
     end
+    # 跳过已经完成的题目
 
     insert = true
     uid_col.find({:uid => single['uid']}).each do

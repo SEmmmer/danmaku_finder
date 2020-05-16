@@ -37,6 +37,10 @@ white_str[32] = "こ"
 white_str[33] = "８８８"
 white_str[34] = "危"
 white_str[35] = "恭喜"
+white_str[36] = "("
+white_str[37] = ")"
+white_str[38] = "（"
+white_str[39] = "）"
 # 白名单列表
 
 file = File.open("database/file.txt", "rb")
@@ -55,6 +59,7 @@ if file
     |j|
       if i.include? j
         if_skip = true
+        break
         # 如果这行弹幕包括以上任意字符
         # 设定skip为true
         # 删除掉这行弹幕
