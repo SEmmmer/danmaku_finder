@@ -26,7 +26,8 @@ if question_file
     insert = true
     doc = {
         uid: array[1],
-        danmaku: danmaku_content
+        danmaku: danmaku_content,
+        finish: "no"
     }
 
     table.find({:danmaku => danmaku_content}).each do

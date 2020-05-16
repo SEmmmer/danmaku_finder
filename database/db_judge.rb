@@ -20,6 +20,18 @@ begin
     unless get
       raise SystemExit, "The database is NULL now"
     end
+
+    if single['finish'] == 'yes'
+      next
+    end
+
+    insert = true
+    uid_col.find({:uid => single['uid']}).each do
+      insert = false
+    end
+    unless insert
+      next
+    end
     # 趁另一个用户不注意提前插入文本
     # 防止两个用户同时改到一道题
     uid_col.insert_one({:uid => single['uid'], :type => "white"})
@@ -29,14 +41,13 @@ begin
     puts single['danmaku']
     string = gets
     if string == "1\n"
-      uid_col.update_one({:uid => single['uid']}, {:type => "black"})
+      uid_col.update_one({:uid => single['uid']}, {'$set': {:type => "black"}})
       # 先 斩 后 奏
     end
-    question.delete_many(:question => single["danmaku"])
-    question.delete_many(:uid => single["uid"])
+    question.update_many({:question => single["danmaku"]}, {'$set': {:finish => "yes"}})
+    question.update_many({:uid => single["uid"]}, {'$set': {:finish => "yes"}})
     # 处理完该问题
-    # 从弹幕库中删除
-    # 以后也不再接受相同的问题
+    # 不再接受相同的问题
     # 以及相同用户的言论
   end
 rescue Interrupt
